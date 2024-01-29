@@ -10,9 +10,20 @@ public class Main {
         int size = scanner.nextInt();
         int[] array = new int[size];
 
-        System.out.println("Ingresar los valores del arreglo:");
-        for (int i = 0; i < size; i++) {
-            array[i] = scanner.nextInt();
+        System.out.println("Desea ingresar la lista de valores manualmente:");
+        System.out.println("1. Si");
+        System.out.println("2. No");
+        int manualType = scanner.nextInt();
+        switch (manualType) {
+            case 1:
+                System.out.println("Ingresar los valores del arreglo:");
+                for (int i = 0; i < size; i++) {
+                    array[i] = scanner.nextInt();
+                }
+            break;
+            case 2:
+                array = SortingHelper.generateRandomArray(size);
+            break;
         }
 
         while (true) {
