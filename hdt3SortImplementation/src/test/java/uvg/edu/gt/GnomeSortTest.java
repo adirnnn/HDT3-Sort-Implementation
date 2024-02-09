@@ -1,12 +1,10 @@
 package uvg.edu.gt;
 
-import org.junit.Test;
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.*;
+import junit.framework.TestCase;
 
-public class GnomeSortTest {
-
-    @Test
-    public void testGnomeSort() {
+public class GnomeSortTest extends TestCase {
+    public void testSort() {
         int[] array = {5, 2, 9, 1, 5, 6};
         GnomeSort gnomeSort = new GnomeSort();
         gnomeSort.sort(array);

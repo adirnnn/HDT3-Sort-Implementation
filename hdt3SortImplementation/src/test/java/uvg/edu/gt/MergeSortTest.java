@@ -1,12 +1,10 @@
 package uvg.edu.gt;
 
-import org.junit.Test;
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.*;
+        import junit.framework.TestCase;
 
-public class MergeSortTest {
-
-    @Test
-    public void testMergeSort() {
+public class MergeSortTest extends TestCase {
+    public void testSort() {
         int[] array = {5, 2, 9, 1, 5, 6};
         MergeSort mergeSort = new MergeSort();
         mergeSort.sort(array);
