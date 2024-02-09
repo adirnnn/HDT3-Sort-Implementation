@@ -14,46 +14,34 @@ public class App {
         System.out.println("Ingresar el número de arreglos a generar:");
         int numArrays = scanner.nextInt();
 
-        System.out.println("Ingresar el tamaño de cada arreglo:");
-        int size = scanner.nextInt();
+        int choice = 0;
+        while (choice != 5) {
+            printMenu();
+            choice = scanner.nextInt();
 
-        for (int i = 0; i < numArrays; i++) {
-            int[] array = SortingHelper.generateRandomArray(size);
-            
-            System.out.println("Arreglo " + (i+1) + " original:");
-            System.out.println(Arrays.toString(array));
-            System.out.println("---------------------------");
-
-            while (true) {
-                printMenu();
-                int choice = scanner.nextInt();
-
-                switch (choice) {
-                    case 1:
-                        applyAndPrintSorting(array.clone(), "Gnome Sort", new GnomeSort());
-                        break;
-                    case 2:
-                        applyAndPrintSorting(array.clone(), "Merge Sort", new MergeSort());
-                        break;
-                    case 3:
-                        applyAndPrintSorting(array.clone(), "Quick Sort", new QuickSort());
-                        break;
-                    case 4:
-                        applyAndPrintSorting(array.clone(), "Radix Sort", new RadixSort());
-                        break;
-                    case 5:
-                        System.out.println("************ Fin de ejecución del programa. ************");
-                        scanner.close();
-                        System.exit(0);
-                        break;
-                    default:
-                        System.out.println("Opción inválida. Por favor ingrese un número entre 1 y 5.");
-                        break;
-                }
+            switch (choice) {
+                case 1:
+                    applyAndPrintSorting(numArrays, "Gnome Sort", new GnomeSort());
+                    break;
+                case 2:
+                    applyAndPrintSorting(numArrays, "Merge Sort", new MergeSort());
+                    break;
+                case 3:
+                    applyAndPrintSorting(numArrays, "Quick Sort", new QuickSort());
+                    break;
+                case 4:
+                    applyAndPrintSorting(numArrays, "Radix Sort", new RadixSort());
+                    break;
+                case 5:
+                    System.out.println("************ Fin de ejecución del programa. ************");
+                    scanner.close();
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Opción inválida. Por favor ingrese un número entre 1 y 5.");
+                    break;
             }
         }
-
-        scanner.close();
     }
 
     private static void printMenu() {
@@ -66,10 +54,18 @@ public class App {
         System.out.print("Ingrese una opción (1-5): ");
     }
 
-    private static void applyAndPrintSorting(int[] array, String algorithmName, ISortAlgorithm sortAlgorithm) {
-        sortAlgorithm.sort(array);
-        System.out.println(algorithmName + " Resultado:");
-        System.out.println(Arrays.toString(array));
-        System.out.println("---------------------------");
+    private static void applyAndPrintSorting(int numArrays, String algorithmName, ISortAlgorithm sortAlgorithm) {
+        for (int i = 0; i < numArrays; i++) {
+            int[] array = SortingHelper.generateRandomArray(i+1);
+
+            System.out.println("Arreglo " + (i + 1) + " original:");
+            System.out.println(Arrays.toString(array.clone()));
+            System.out.println("---------------------------");
+
+            sortAlgorithm.sort(array.clone());
+            System.out.println(algorithmName + " Resultado:");
+            System.out.println(Arrays.toString(array.clone()));
+            System.out.println("---------------------------");
+        }
     }
 }
