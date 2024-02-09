@@ -1,3 +1,5 @@
+package uvg.edu.gt;
+
 public class QuickSort implements ISortAlgorithm {
 
     public void sort(int[] array) {

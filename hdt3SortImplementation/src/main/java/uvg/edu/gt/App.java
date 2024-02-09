@@ -1,9 +1,15 @@
-import java.util.Arrays;
+package uvg.edu.gt;
+
+import java.lang.String;
 import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Collections;
 
-public class Main {
-
-    public static void main(String[] args) {
+import java.util.List;
+public class App
+{
+    public static void main( String[] args )
+    {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Ingresar el tamaño del arreglo:");
@@ -20,10 +26,10 @@ public class Main {
                 for (int i = 0; i < size; i++) {
                     array[i] = scanner.nextInt();
                 }
-            break;
+                break;
             case 2:
                 array = SortingHelper.generateRandomArray(size);
-            break;
+                break;
         }
 
         while (true) {
@@ -65,7 +71,7 @@ public class Main {
         System.out.print("Ingrese una opción (1-5): ");
     }
 
-    private static void applyAndPrintSorting(int[] array, String algorithmName, ISortAlgorithm gnomeSort) {
+    private static void applyAndPrintSorting(int[] array, java.lang.String algorithmName, ISortAlgorithm gnomeSort) {
         long startTime = System.currentTimeMillis();
         gnomeSort.sort(array);
         long endTime = System.currentTimeMillis();
@@ -74,6 +80,4 @@ public class Main {
         System.out.println("Arreglo ordenado: " + Arrays.toString(array));
         System.out.println("Tiempo de ejecución: " + (endTime - startTime) + " millisegundos");
     }
-
-
 }

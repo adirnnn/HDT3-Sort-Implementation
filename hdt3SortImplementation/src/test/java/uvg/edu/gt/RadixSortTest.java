@@ -1,13 +1,15 @@
+package uvg.edu.gt;
+
 import org.junit.Test;
 import static org.junit.Assert.assertArrayEquals;
 
-public class MergeSortTest {
+public class RadixSortTest {
 
     @Test
-    public void testMergeSort() {
+    public void testRadixSort() {
         int[] array = {5, 2, 9, 1, 5, 6};
-        MergeSort mergeSort = new MergeSort();
-        mergeSort.sort(array);
+        RadixSort radixSort = new RadixSort();
+        radixSort.sort(array);
         int[] expected = {1, 2, 5, 5, 6, 9};
         assertArrayEquals(expected, array);
     }
