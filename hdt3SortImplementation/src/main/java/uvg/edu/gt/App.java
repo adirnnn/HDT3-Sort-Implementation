@@ -3,9 +3,7 @@ package uvg.edu.gt;
 import java.lang.String;
 import java.util.Scanner;
 import java.util.Arrays;
-import java.util.Collections;
 
-import java.util.List;
 public class App {
 
     public static void main(String[] args) {
@@ -14,6 +12,18 @@ public class App {
         System.out.println("Ingresar el número de arreglos a generar:");
         int numArrays = scanner.nextInt();
 
+
+        int inputProcessing = -1;
+        while (inputProcessing > 1 || inputProcessing < 0) {
+            System.out.println("Seleccione una opción de ejecución:");
+            System.out.println("0. Arreglo ordenado");
+            System.out.println("1. Arreglo no ordenado");
+            inputProcessing = scanner.nextInt();
+        }
+
+        // 0 = SORTED, 1 = UNSORTED
+        ProcessingType processing = ProcessingType.getTypeByOrdinal(inputProcessing);
+
         int choice = 0;
         while (choice != 5) {
             printMenu();
@@ -21,16 +31,16 @@ public class App {
 
             switch (choice) {
                 case 1:
-                    applyAndPrintSorting(numArrays, "Gnome Sort", new GnomeSort());
+                    applyAndPrintSorting(numArrays, "Gnome Sort", new GnomeSort(), processing);
                     break;
                 case 2:
-                    applyAndPrintSorting(numArrays, "Merge Sort", new MergeSort());
+                    applyAndPrintSorting(numArrays, "Merge Sort", new MergeSort(), processing);
                     break;
                 case 3:
-                    applyAndPrintSorting(numArrays, "Quick Sort", new QuickSort());
+                    applyAndPrintSorting(numArrays, "Quick Sort", new QuickSort(), processing);
                     break;
                 case 4:
-                    applyAndPrintSorting(numArrays, "Radix Sort", new RadixSort());
+                    applyAndPrintSorting(numArrays, "Radix Sort", new RadixSort(), processing);
                     break;
                 case 5:
                     System.out.println("************ Fin de ejecución del programa. ************");
@@ -54,17 +64,21 @@ public class App {
         System.out.print("Ingrese una opción (1-5): ");
     }
 
-    private static void applyAndPrintSorting(int numArrays, String algorithmName, ISortAlgorithm sortAlgorithm) {
+    private static void applyAndPrintSorting(int numArrays, String algorithmName, ISortAlgorithm sortAlgorithm, ProcessingType processing) {
         for (int i = 0; i < numArrays; i++) {
-            int[] array = SortingHelper.generateRandomArray(i+1);
+            int[] array = switch (processing) {
+                case SORTED -> SortingHelper.generateSortedArray(i + 1);
+                case UNSORTED -> SortingHelper.generateRandomArray(i + 1);
+            };
 
-            System.out.println("Arreglo " + (i + 1) + " original:");
-            System.out.println(Arrays.toString(array.clone()));
+            System.out.println("Arreglo original " + (i + 1) + " elementos:");
+            System.out.println(Arrays.toString(array));
             System.out.println("---------------------------");
 
-            sortAlgorithm.sort(array.clone());
+            int[] tmpArray = array;
+            sortAlgorithm.sort(tmpArray);
             System.out.println(algorithmName + " Resultado:");
-            System.out.println(Arrays.toString(array.clone()));
+            System.out.println(Arrays.toString(tmpArray));
             System.out.println("---------------------------");
         }
     }

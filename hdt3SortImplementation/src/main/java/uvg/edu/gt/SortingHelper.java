@@ -18,6 +18,14 @@ public class SortingHelper {
        return toIntArray(list);
     }
 
+    public static int[] generateSortedArray(int size) {
+        int[] array = new int[size];
+        for (int i = 0; i < size; i++) {
+            array[i] = i + 1;
+        }
+        return array;
+    }
+
     private static int[] toIntArray(List<Integer> list) {
     int[] ret = new int[list.size()];
     for(int i = 0; i < ret.length; i++)
