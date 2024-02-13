@@ -25,7 +25,7 @@ public class App {
         ProcessingType processing = ProcessingType.getTypeByOrdinal(inputProcessing);
 
         int choice = 0;
-        while (choice != 5) {
+        while (choice != 6) {
             printMenu();
             choice = scanner.nextInt();
 
@@ -43,6 +43,9 @@ public class App {
                     applyAndPrintSorting(numArrays, "Radix Sort", new RadixSort(), processing);
                     break;
                 case 5:
+                    applyAndPrintSorting(numArrays, "Bubble Sort", new BubbleSort(), processing);
+                    break;
+                case 6:
                     System.out.println("************ Fin de ejecución del programa. ************");
                     scanner.close();
                     System.exit(0);
@@ -60,8 +63,9 @@ public class App {
         System.out.println("2. Merge Sort");
         System.out.println("3. Quick Sort");
         System.out.println("4. Radix Sort");
-        System.out.println("5. Salir del programa");
-        System.out.print("Ingrese una opción (1-5): ");
+        System.out.println("5. Bubble Sort");
+        System.out.println("6. Salir del programa");
+        System.out.print("Ingrese una opción (1-6): ");
     }
 
     private static void applyAndPrintSorting(int numArrays, String algorithmName, ISortAlgorithm sortAlgorithm, ProcessingType processing) {
@@ -76,9 +80,13 @@ public class App {
             System.out.println("---------------------------");
 
             int[] tmpArray = array;
+            long startTime = System.nanoTime();
             sortAlgorithm.sort(tmpArray);
+            long endTime = System.nanoTime();
+            long duration = (endTime - startTime);
             System.out.println(algorithmName + " Resultado:");
             System.out.println(Arrays.toString(tmpArray));
+            System.out.println(duration);
             System.out.println("---------------------------");
         }
     }
